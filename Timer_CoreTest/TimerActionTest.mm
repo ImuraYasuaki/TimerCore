@@ -32,4 +32,11 @@
     XCTAssert(YES, @"Pass");
 }
 
+- (void)testSetAction {
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set"]];
+    [action perform];
+
+    XCTAssert(YES, @"Pass");
+}
+
 @end

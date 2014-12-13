@@ -18,6 +18,10 @@ namespace pathutil {
         int result = stat(path, &buffer);
         return result != -1;
     }
+    
+    bool isExistsPath(const std::string &path) {
+        return isExistsPath(path.c_str());
+    }
 
 }
 

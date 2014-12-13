@@ -11,7 +11,6 @@
 		882741401A2029620086C294 /* TimerCommandArgumentParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8827413E1A2029620086C294 /* TimerCommandArgumentParser.mm */; };
 		882741431A202F110086C294 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 882741421A202F110086C294 /* Timer.cpp */; };
 		882741521A2033DD0086C294 /* Timer_CoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 882741511A2033DD0086C294 /* Timer_CoreTest.m */; };
-		882741561A2033E60086C294 /* TimerUtilTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 882741471A2033880086C294 /* TimerUtilTest.mm */; };
 		8827415D1A2B274A0086C294 /* TimerAction.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8827415C1A2B274A0086C294 /* TimerAction.mm */; };
 		8881500F1A2B40DC00D859F8 /* TimerService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8881500D1A2B40DC00D859F8 /* TimerService.cpp */; };
 		888150121A2B42D200D859F8 /* ConfigService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 888150101A2B42D200D859F8 /* ConfigService.cpp */; };
@@ -21,6 +20,7 @@
 		889A7DD71A3BCFC100581D34 /* ConfigService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 888150101A2B42D200D859F8 /* ConfigService.cpp */; };
 		889A7DD81A3BCFC900581D34 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 882741421A202F110086C294 /* Timer.cpp */; };
 		889A7DD91A3BCFD700581D34 /* TimerCommandArgumentParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8827413E1A2029620086C294 /* TimerCommandArgumentParser.mm */; };
+		889A7DDB1A3BDED700581D34 /* TimerUtilTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 889A7DDA1A3BDED700581D34 /* TimerUtilTest.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +43,6 @@
 		882741411A2029790086C294 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		882741421A202F110086C294 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		882741451A202FB90086C294 /* timeutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timeutil.h; sourceTree = "<group>"; };
-		882741471A2033880086C294 /* TimerUtilTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TimerUtilTest.mm; sourceTree = "<group>"; };
 		8827414D1A2033DD0086C294 /* Timer_CoreTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Timer_CoreTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		882741501A2033DD0086C294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		882741511A2033DD0086C294 /* Timer_CoreTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Timer_CoreTest.m; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		888150101A2B42D200D859F8 /* ConfigService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigService.cpp; sourceTree = "<group>"; };
 		888150111A2B42D200D859F8 /* ConfigService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigService.h; sourceTree = "<group>"; };
 		889A7DD31A3BCA3400581D34 /* TimerActionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TimerActionTest.mm; sourceTree = "<group>"; };
+		889A7DDA1A3BDED700581D34 /* TimerUtilTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TimerUtilTest.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,6 @@
 		882741331A2027E70086C294 /* Timer_Core */ = {
 			isa = PBXGroup;
 			children = (
-				882741461A2033700086C294 /* Test */,
 				8827413B1A2028170086C294 /* Classes */,
 				882741341A2027E70086C294 /* main.mm */,
 				8827413E1A2029620086C294 /* TimerCommandArgumentParser.mm */,
@@ -139,20 +138,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		882741461A2033700086C294 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				882741471A2033880086C294 /* TimerUtilTest.mm */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		8827414E1A2033DD0086C294 /* Timer_CoreTest */ = {
 			isa = PBXGroup;
 			children = (
 				882741511A2033DD0086C294 /* Timer_CoreTest.m */,
 				8827414F1A2033DD0086C294 /* Supporting Files */,
 				889A7DD31A3BCA3400581D34 /* TimerActionTest.mm */,
+				889A7DDA1A3BDED700581D34 /* TimerUtilTest.mm */,
 			);
 			path = Timer_CoreTest;
 			sourceTree = "<group>";
@@ -280,10 +272,10 @@
 				889A7DD51A3BCFB000581D34 /* TimerAction.mm in Sources */,
 				882741521A2033DD0086C294 /* Timer_CoreTest.m in Sources */,
 				889A7DD61A3BCFBA00581D34 /* TimerService.cpp in Sources */,
-				882741561A2033E60086C294 /* TimerUtilTest.mm in Sources */,
 				889A7DD91A3BCFD700581D34 /* TimerCommandArgumentParser.mm in Sources */,
 				889A7DD81A3BCFC900581D34 /* Timer.cpp in Sources */,
 				889A7DD71A3BCFC100581D34 /* ConfigService.cpp in Sources */,
+				889A7DDB1A3BDED700581D34 /* TimerUtilTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

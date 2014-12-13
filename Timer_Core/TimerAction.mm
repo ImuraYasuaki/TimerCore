@@ -97,7 +97,8 @@
 {
     SetAction *action = [[SetAction alloc] init];
     NSUInteger timeTextIndex = [arguments indexOfObject:[self name]] + 1;
-    if ([arguments count] <= timeTextIndex) {
+    if (timeTextIndex < [arguments count]) {
+        
     }
     return action;
 }
@@ -126,7 +127,10 @@
 {
     const char *text = "-- Error:\n"
     "  you must set time for set command.\n"
-    "  format is \"YYYY-MM-DD HH:mm\".\n";
+    "  format is \"YYYY-MM-DD HH:mm\".\n"
+    "  also:\n"
+    "  you can use 'message'.\n"
+    "    example: 'timer set YYYY-MM-DD HH:mm \"Go home now !\"'\n";
     return text;
 }
 

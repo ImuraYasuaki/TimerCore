@@ -18,7 +18,7 @@ void Timer::setFireDateTime(long dateTime) {
     this->fireDateTime = dateTime;
 }
 
-bool Timer::isFinish() {
+bool Timer::isFinish() const {
     return timeutil::isPast(this->fireDateTime);
 }
 

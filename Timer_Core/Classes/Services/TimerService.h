@@ -22,6 +22,8 @@ public:
     static void getTimer(const std::string &path, std::list<Timer> &results);
 
     static void registerTimer(const std::string &path, const Timer &timer);
+
+    static const std::string &getTimerFormat(const Timer &timer, std::string &result);
 };
 
 #endif /* defined(__Timer_Core__TimerService__) */

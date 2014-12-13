@@ -14,11 +14,14 @@
 // utils
 #include "pathutil.h"
 
+// models
+#include "Timer.h"
+
 void TimerService::getTimer(const std::string &path, std::list<Timer> &results) {
     if (path.empty()) {
         return;
     }
-    if (!pathutil::isExistsPath(path.c_str())) {
+    if (!pathutil::isExistsPath(path)) {
         return;
     }
     std::ifstream stream(path, std::ios::out);
@@ -36,4 +39,20 @@ void TimerService::getTimer(const std::string &path, std::list<Timer> &results) 
 }
 
 void TimerService::registerTimer(const std::string &path, const Timer &timer) {
+    if (path.empty()) {
+        return;
+    }
+    std::ofstream stream(path, std::ios::binary|std::ios::app);
+    std::string format("");
+    TimerService::getTimerFormat(timer, format);
+    stream << format << std::endl;
+}
+
+const std::string &TimerService::getTimerFormat(const Timer &timer, std::string &result) {
+    result.clear();
+
+    result += timer.isFinish() ? "# " : "  ";
+    result += timer.getFireDateTime();
+
+    return result;
 }

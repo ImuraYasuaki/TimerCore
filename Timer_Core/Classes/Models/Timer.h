@@ -13,19 +13,19 @@
 
 class Timer {
 private:
-    long fireDateTime;
+    time_t fireDateTime;
     std::string message;
 
 public:
-    Timer() { fireDateTime = 0; }
+    Timer() { this->fireDateTime = 0; }
 
-    long getFireDateTime() const { return fireDateTime; }
-    void setFireDateTime(long dateTime);
+    time_t getFireDateTime() const { return this->fireDateTime; }
+    void setFireDateTime(time_t dateTime);
 
     const std::string &getMessage() const { return this->message; }
     void setMessage(const std::string message) {this->message = message; }
 
-    bool isFinish();
+    bool isFinish() const;
 };
 
 #endif
