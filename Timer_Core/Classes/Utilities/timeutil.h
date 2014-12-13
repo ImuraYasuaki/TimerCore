@@ -16,6 +16,7 @@ namespace timeutil {
 
     /*! @abstract Epoc秒を取得する */
     inline static time_t getCurrentEpocTime() {
+        // FIXME: おかしい？
         return std::time(nullptr);
     }
 

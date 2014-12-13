@@ -52,7 +52,7 @@ const std::string &TimerService::getTimerFormat(const Timer &timer, std::string 
     result.clear();
 
     result += timer.isFinish() ? "# " : "  ";
-    result += timer.getFireDateTime();
+    result += std::to_string(timer.getFireDateTime());
 
     return result;
 }

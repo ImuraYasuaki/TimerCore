@@ -11,7 +11,7 @@
 #include "Timer.h"
 #include "timeutil.h"
 
-void Timer::setFireDateTime(long dateTime) {
+void Timer::setFireDateTime(const time_t &dateTime) {
     if (timeutil::isPast(dateTime)) {
         return;
     }

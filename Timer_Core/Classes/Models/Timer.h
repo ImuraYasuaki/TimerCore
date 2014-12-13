@@ -20,7 +20,7 @@ public:
     Timer() { this->fireDateTime = 0; }
 
     time_t getFireDateTime() const { return this->fireDateTime; }
-    void setFireDateTime(time_t dateTime);
+    void setFireDateTime(const time_t &dateTime);
 
     const std::string &getMessage() const { return this->message; }
     void setMessage(const std::string message) {this->message = message; }

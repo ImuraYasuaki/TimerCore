@@ -88,28 +88,36 @@
 @interface SetAction : TimerAction
 @property (nonatomic, strong) NSDate *time;
 @property (nonatomic, strong) NSString *message;
++ (NSDateFormatter *)dateFormatter;
++ (NSDate *)dateWithDateTimeText:(NSString *)datetimeText;
 + (const char *)noTimeErrorMessage;
 @end
 
 @implementation SetAction
 
-+ (instancetype)timerActionWithArguments:(NSArray *)arguments
-{
++ (instancetype)timerActionWithArguments:(NSArray *)arguments {
     SetAction *action = [[SetAction alloc] init];
-    NSUInteger timeTextIndex = [arguments indexOfObject:[self name]] + 1;
-    if (timeTextIndex < [arguments count]) {
-        
+    NSUInteger timeIndex = [arguments indexOfObject:[self name]] + 1;
+    if (timeIndex < [arguments count]) {
+        NSString *datetimeText = arguments[timeIndex];
+        [action setTime:[self dateWithDateTimeText:datetimeText]];
+
+        if (![action time]) {
+            return action;
+        }
+        NSUInteger messageIndex = timeIndex + 1;
+        if (messageIndex < [arguments count]) {
+            [action setMessage:arguments[messageIndex]];
+        }
     }
     return action;
 }
 
-+ (NSString *)name
-{
++ (NSString *)name {
     return [NSString stringWithCString:command::action::RegisterTimerActionName encoding:NSUTF8StringEncoding];
 }
 
-- (void)perform
-{
+- (void)perform {
     if (![self time]) {
         printf("%s", [self.class noTimeErrorMessage]);
         return;
@@ -121,10 +129,23 @@
     timer.setFireDateTime([self.time timeIntervalSince1970]);
     timer.setMessage(self.message ? [self.message UTF8String] : "");
     TimerService::registerTimer(path, timer);
+
+    NSString *datetimeText = [[self.class dateFormatter] stringFromDate:self.time];
+    NSLog(@"setted timer.\n  %@", datetimeText);
 }
 
-+ (const char *)noTimeErrorMessage
-{
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-DD HH:mm"];
+    return formatter;
+}
+
++ (NSDate *)dateWithDateTimeText:(NSString *)datetimeText {
+    NSDate *datetime = [[self dateFormatter] dateFromString:datetimeText];
+    return datetime;
+}
+
++ (const char *)noTimeErrorMessage {
     const char *text = "-- Error:\n"
     "  you must set time for set command.\n"
     "  format is \"YYYY-MM-DD HH:mm\".\n"

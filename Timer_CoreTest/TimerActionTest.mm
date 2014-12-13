@@ -32,8 +32,29 @@
     XCTAssert(YES, @"Pass");
 }
 
-- (void)testSetAction {
+- (void)testSetAction_noTime {
     TimerAction *action = [TimerAction timerActionWithArguments:@[@"set"]];
+    [action perform];
+
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testSetAction_noMessageInvalidDate {
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", @"YYYY-MM-dd HH:mm"]];
+    [action perform];
+    
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testSetAction_noMessageNotEnoughDate {
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", @"2014-12-13"]];
+    [action perform];
+
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testSetAction_noMessage {
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", @"2014-12-13 12:30"]];
     [action perform];
 
     XCTAssert(YES, @"Pass");
