@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88265A1C1A3D96780031D412 /* TimerLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88265A1B1A3D96780031D412 /* TimerLib.h */; };
+		88265A1E1A3D96780031D412 /* TimerLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 88265A1D1A3D96780031D412 /* TimerLib.m */; };
 		882741351A2027E70086C294 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 882741341A2027E70086C294 /* main.mm */; };
 		882741401A2029620086C294 /* TimerCommandArgumentParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8827413E1A2029620086C294 /* TimerCommandArgumentParser.mm */; };
 		882741431A202F110086C294 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 882741421A202F110086C294 /* Timer.cpp */; };
@@ -24,6 +26,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		88265A171A3D96780031D412 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				88265A1C1A3D96780031D412 /* TimerLib.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8827412F1A2027E70086C294 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -36,6 +48,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		88265A191A3D96780031D412 /* libTimerLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTimerLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88265A1B1A3D96780031D412 /* TimerLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerLib.h; sourceTree = "<group>"; };
+		88265A1D1A3D96780031D412 /* TimerLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerLib.m; sourceTree = "<group>"; };
 		882741311A2027E70086C294 /* Timer_Core */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Timer_Core; sourceTree = BUILT_PRODUCTS_DIR; };
 		882741341A2027E70086C294 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		8827413E1A2029620086C294 /* TimerCommandArgumentParser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TimerCommandArgumentParser.mm; sourceTree = "<group>"; };
@@ -60,6 +75,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		88265A161A3D96780031D412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8827412E1A2027E70086C294 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,11 +99,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88265A1A1A3D96780031D412 /* TimerLib */ = {
+			isa = PBXGroup;
+			children = (
+				88265A1B1A3D96780031D412 /* TimerLib.h */,
+				88265A1D1A3D96780031D412 /* TimerLib.m */,
+			);
+			path = TimerLib;
+			sourceTree = "<group>";
+		};
 		882741281A2027E70086C294 = {
 			isa = PBXGroup;
 			children = (
 				882741331A2027E70086C294 /* Timer_Core */,
 				8827414E1A2033DD0086C294 /* Timer_CoreTest */,
+				88265A1A1A3D96780031D412 /* TimerLib */,
 				882741321A2027E70086C294 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +123,7 @@
 			children = (
 				882741311A2027E70086C294 /* Timer_Core */,
 				8827414D1A2033DD0086C294 /* Timer_CoreTest.xctest */,
+				88265A191A3D96780031D412 /* libTimerLib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +204,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		88265A181A3D96780031D412 /* TimerLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88265A2B1A3D96780031D412 /* Build configuration list for PBXNativeTarget "TimerLib" */;
+			buildPhases = (
+				88265A151A3D96780031D412 /* Sources */,
+				88265A161A3D96780031D412 /* Frameworks */,
+				88265A171A3D96780031D412 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimerLib;
+			productName = TimerLib;
+			productReference = 88265A191A3D96780031D412 /* libTimerLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		882741301A2027E70086C294 /* Timer_Core */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 882741381A2027E70086C294 /* Build configuration list for PBXNativeTarget "Timer_Core" */;
@@ -214,6 +264,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = yasu;
 				TargetAttributes = {
+					88265A181A3D96780031D412 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
 					882741301A2027E70086C294 = {
 						CreatedOnToolsVersion = 6.0.1;
 					};
@@ -236,6 +289,7 @@
 			targets = (
 				882741301A2027E70086C294 /* Timer_Core */,
 				8827414C1A2033DD0086C294 /* Timer_CoreTest */,
+				88265A181A3D96780031D412 /* TimerLib */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +305,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		88265A151A3D96780031D412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88265A1E1A3D96780031D412 /* TimerLib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8827412D1A2027E70086C294 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +344,33 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		88265A271A3D96780031D412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		88265A281A3D96780031D412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		882741361A2027E70086C294 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -431,6 +520,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		88265A2B1A3D96780031D412 /* Build configuration list for PBXNativeTarget "TimerLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88265A271A3D96780031D412 /* Debug */,
+				88265A281A3D96780031D412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8827412C1A2027E70086C294 /* Build configuration list for PBXProject "Timer_Core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
