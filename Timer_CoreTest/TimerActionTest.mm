@@ -80,4 +80,14 @@
     XCTAssert(YES, @"Pass");
 }
 
+- (void)testSetAction_EnglishMessageAfter30m {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-DD HH:mm"];
+    NSString *now = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:60 * 30]];
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", now, @"Do homeworks!"]];
+    [action perform];
+    
+    XCTAssert(YES, @"Pass");
+}
+
 @end

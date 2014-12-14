@@ -41,14 +41,16 @@ void TimerService::getTimer(const std::string &path, std::list<Timer> &results) 
         std::string::size_type messageMarkPosition = line.find(getMessageMarkString());
         Timer timer;
         if (messageMarkPosition != std::string::npos) {
-            std::string message = line.substr(messageMarkPosition, line.length() - messageMarkPosition);
+            std::string::size_type start = messageMarkPosition + getMessageMarkString().length();
+            std::string::size_type end = line.length() - messageMarkPosition;
+            std::string message = line.substr(start, end);
             timer.setMessage(message);
         }
         std::string::size_type start = getFinishedMarkString().length();
         std::string::size_type end = (messageMarkPosition == std::string::npos ? line.length() : messageMarkPosition) - getFinishedMarkString().length();
         std::string timeText = line.substr(start, end);
 
-        /*! @todo このやり方はさすがに・・・ */
+        /*! @todo このやり方はさすがに・・・かな？ */
         long time = atol(timeText.c_str());
         timer.setFireDatetime(time);
 
@@ -70,8 +72,10 @@ void TimerService::registerTimer(const std::string &path, const Timer &timer) {
 const std::string &TimerService::getTimerFormat(const Timer &timer, std::string &result) {
     result.clear();
 
-    result += timer.isFinish() ? "# " : "  ";
+    result += timer.isFinish() ? getFinishedMarkString() : "  ";
     result += std::to_string(timer.getFireDatetime());
-
+    if (!timer.getMessage().empty()) {
+        result += getMessageMarkString() + timer.getMessage();
+    }
     return result;
 }
