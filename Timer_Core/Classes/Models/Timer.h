@@ -13,14 +13,15 @@
 
 class Timer {
 private:
-    time_t fireDateTime;
+    time_t fireDatetime;
     std::string message;
 
 public:
-    Timer() { this->fireDateTime = 0; }
+    Timer() { this->fireDatetime = 0; }
+    Timer(const Timer &other) { this->fireDatetime = other.getFireDatetime(); this->message = other.getMessage(); }
 
-    time_t getFireDateTime() const { return this->fireDateTime; }
-    void setFireDateTime(const time_t &dateTime);
+    time_t getFireDatetime() const { return this->fireDatetime; }
+    void setFireDatetime(const time_t &datetime);
 
     const std::string &getMessage() const { return this->message; }
     void setMessage(const std::string message) {this->message = message; }

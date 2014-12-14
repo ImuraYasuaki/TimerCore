@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 yasu. All rights reserved.
 //
 
+#pragma once
+
 #ifndef Timer_Core_pathutil_h
 #define Timer_Core_pathutil_h
 
@@ -21,6 +23,17 @@ namespace pathutil {
     
     bool isExistsPath(const std::string &path) {
         return isExistsPath(path.c_str());
+    }
+
+    bool createDirectory(const std::string &path) {
+        if (path.empty()) {
+            return false;
+        }
+        if (isExistsPath(path)) {
+            return false;
+        }
+        int result = mkdir(path.c_str(), 0777);
+        return result == 0;
     }
 
 }

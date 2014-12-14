@@ -19,6 +19,9 @@ private:
     TimerService() {}
 
 public:
+    static const std::string &getFinishedMarkString();
+    static const std::string &getMessageMarkString();
+
     static void getTimer(const std::string &path, std::list<Timer> &results);
 
     static void registerTimer(const std::string &path, const Timer &timer);

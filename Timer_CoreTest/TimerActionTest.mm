@@ -60,4 +60,24 @@
     XCTAssert(YES, @"Pass");
 }
 
+- (void)testSetAction_noMessageCurrentDate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-DD HH:mm"];
+    NSString *now = [formatter stringFromDate:[NSDate date]];
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", now]];
+    [action perform];
+    
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testSetAction_noMessageAfter30m {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-DD HH:mm"];
+    NSString *now = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:60 * 30]];
+    TimerAction *action = [TimerAction timerActionWithArguments:@[@"set", now]];
+    [action perform];
+    
+    XCTAssert(YES, @"Pass");
+}
+
 @end

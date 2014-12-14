@@ -11,17 +11,21 @@
 #include <iostream>
 #include <fstream>
 
-// utils
-#include "pathutil.h"
-
 // models
 #include "Timer.h"
 
+const std::string &TimerService::getFinishedMarkString() {
+    static std::string string("# ");
+    return string;
+}
+
+const std::string &TimerService::getMessageMarkString() {
+    static std::string string(" -m ");
+    return string;
+}
+
 void TimerService::getTimer(const std::string &path, std::list<Timer> &results) {
     if (path.empty()) {
-        return;
-    }
-    if (!pathutil::isExistsPath(path)) {
         return;
     }
     std::ifstream stream(path, std::ios::out);
@@ -34,7 +38,21 @@ void TimerService::getTimer(const std::string &path, std::list<Timer> &results) 
         if (line.empty()) {
             continue;
         }
-        printf("\"%s\"", line.c_str());
+        std::string::size_type messageMarkPosition = line.find(getMessageMarkString());
+        Timer timer;
+        if (messageMarkPosition != std::string::npos) {
+            std::string message = line.substr(messageMarkPosition, line.length() - messageMarkPosition);
+            timer.setMessage(message);
+        }
+        std::string::size_type start = getFinishedMarkString().length();
+        std::string::size_type end = (messageMarkPosition == std::string::npos ? line.length() : messageMarkPosition) - getFinishedMarkString().length();
+        std::string timeText = line.substr(start, end);
+
+        /*! @todo このやり方はさすがに・・・ */
+        long time = atol(timeText.c_str());
+        timer.setFireDatetime(time);
+
+        results.push_back(timer);
     }
 }
 
@@ -46,13 +64,14 @@ void TimerService::registerTimer(const std::string &path, const Timer &timer) {
     std::string format("");
     TimerService::getTimerFormat(timer, format);
     stream << format << std::endl;
+    stream.close();
 }
 
 const std::string &TimerService::getTimerFormat(const Timer &timer, std::string &result) {
     result.clear();
 
     result += timer.isFinish() ? "# " : "  ";
-    result += std::to_string(timer.getFireDateTime());
+    result += std::to_string(timer.getFireDatetime());
 
     return result;
 }

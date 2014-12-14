@@ -16,12 +16,12 @@ namespace timeutil {
 
     /*! @abstract Epoc秒を取得する */
     inline static time_t getCurrentEpocTime() {
-        // FIXME: おかしい？
         return std::time(nullptr);
     }
 
     inline static bool isPast(time_t time) {
-        return time < timeutil::getCurrentEpocTime();
+        time_t currentTime = getCurrentEpocTime();
+        return difftime(currentTime, time) > 0;
     }
 
 }

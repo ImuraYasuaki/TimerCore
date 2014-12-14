@@ -89,7 +89,7 @@
 @property (nonatomic, strong) NSDate *time;
 @property (nonatomic, strong) NSString *message;
 + (NSDateFormatter *)dateFormatter;
-+ (NSDate *)dateWithDateTimeText:(NSString *)datetimeText;
++ (NSDate *)dateWithDatetimeText:(NSString *)datetimeText;
 + (const char *)noTimeErrorMessage;
 @end
 
@@ -100,7 +100,7 @@
     NSUInteger timeIndex = [arguments indexOfObject:[self name]] + 1;
     if (timeIndex < [arguments count]) {
         NSString *datetimeText = arguments[timeIndex];
-        [action setTime:[self dateWithDateTimeText:datetimeText]];
+        [action setTime:[self dateWithDatetimeText:datetimeText]];
 
         if (![action time]) {
             return action;
@@ -124,10 +124,16 @@
     }
     std::string path;
     ConfigService::getSavedTimerPath(path);
-
+    if (path.empty()) {
+        return;
+    }
     Timer timer;
-    timer.setFireDateTime([self.time timeIntervalSince1970]);
+    timer.setFireDatetime([self.time timeIntervalSince1970]);
     timer.setMessage(self.message ? [self.message UTF8String] : "");
+    if (timer.isFinish()) {
+        NSLog(@"time: \"%@\" is finished!\n", [self time]);
+        return;
+    }
     TimerService::registerTimer(path, timer);
 
     NSString *datetimeText = [[self.class dateFormatter] stringFromDate:self.time];
@@ -140,7 +146,7 @@
     return formatter;
 }
 
-+ (NSDate *)dateWithDateTimeText:(NSString *)datetimeText {
++ (NSDate *)dateWithDatetimeText:(NSString *)datetimeText {
     NSDate *datetime = [[self dateFormatter] dateFromString:datetimeText];
     return datetime;
 }

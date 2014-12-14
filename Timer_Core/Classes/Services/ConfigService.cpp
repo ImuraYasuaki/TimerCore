@@ -8,12 +8,23 @@
 
 #include "ConfigService.h"
 
-const char *ConfigService::DefaultStorageDirectory = "~/Library/TimerC";
+// utils
+#include "pathutil.h"
+
+/*!
+ @todo プラットフォーム側から受け取る必要がある */
+const char *ConfigService::DefaultStorageDirectory = "/Users/myuon/Library/TimerC";
 
 const char *ConfigService::SavedTimerFileName = "timers.tc";
 
 void ConfigService::getSavedTimerPath(std::string &path) {
     std::string directory(ConfigService::DefaultStorageDirectory);
+    if (!pathutil::isExistsPath(directory)) {
+        bool isExistsDirectory = pathutil::createDirectory(directory);
+        if (!isExistsDirectory) {
+            return;
+        }
+    }
     std::string fileName(ConfigService::SavedTimerFileName);
     path = directory + "/" + fileName;
 }

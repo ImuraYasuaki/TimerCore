@@ -10,7 +10,6 @@
 #define __Timer_Core__ConfigService__
 
 #include <stdio.h>
-
 #include <string>
 
 class ConfigService {
