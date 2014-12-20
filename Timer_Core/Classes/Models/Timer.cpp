@@ -11,14 +11,14 @@
 #include "Timer.h"
 #include "timeutil.h"
 
-void Timer::setFireDatetime(const time_t &datetime) {
+void core::Timer::setFireDatetime(const time_t &datetime) {
     if (timeutil::isPast(datetime)) {
         return;
     }
     this->fireDatetime = datetime;
 }
 
-bool Timer::isFinish() const {
+bool core::Timer::isFinish() const {
     return timeutil::isPast(this->fireDatetime);
 }
 

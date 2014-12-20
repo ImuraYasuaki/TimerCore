@@ -11,22 +11,26 @@
 
 #include <string>
 
-class Timer {
-private:
-    time_t fireDatetime;
-    std::string message;
+namespace core {
 
-public:
-    Timer() { this->fireDatetime = 0; }
-    Timer(const Timer &other) { this->fireDatetime = other.getFireDatetime(); this->message = other.getMessage(); }
+    class Timer {
+    private:
+        time_t fireDatetime;
+        std::string message;
 
-    time_t getFireDatetime() const { return this->fireDatetime; }
-    void setFireDatetime(const time_t &datetime);
+    public:
+        Timer() { this->fireDatetime = 0; }
+        Timer(const Timer &other) { this->fireDatetime = other.getFireDatetime(); this->message = other.getMessage(); }
 
-    const std::string &getMessage() const { return this->message; }
-    void setMessage(const std::string message) {this->message = message; }
+        time_t getFireDatetime() const { return this->fireDatetime; }
+        void setFireDatetime(const time_t &datetime);
 
-    bool isFinish() const;
-};
+        const std::string &getMessage() const { return this->message; }
+        void setMessage(const std::string message) {this->message = message; }
+
+        bool isFinish() const;
+    };
+
+}
 
 #endif

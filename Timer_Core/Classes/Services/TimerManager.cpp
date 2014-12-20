@@ -1,30 +1,27 @@
 //
-//  TimerService.cpp
+//  TimerManager.cpp
 //  Timer_Core
 //
 //  Created by myuon on 2014/11/30.
 //  Copyright (c) 2014年 yasu. All rights reserved.
 //
 
-#include "TimerService.h"
+#include "TimerManager.h"
 
 #include <iostream>
 #include <fstream>
 
-// models
-#include "Timer.h"
-
-const std::string &TimerService::getFinishedMarkString() {
+const std::string &TimerManager::getFinishedMarkString() {
     static std::string string("# ");
     return string;
 }
 
-const std::string &TimerService::getMessageMarkString() {
+const std::string &TimerManager::getMessageMarkString() {
     static std::string string(" -m ");
     return string;
 }
 
-void TimerService::getTimer(const std::string &path, std::list<Timer> &results) {
+void TimerManager::getTimer(const std::string &path, std::list<core::Timer> &results) {
     if (path.empty()) {
         return;
     }
@@ -39,7 +36,7 @@ void TimerService::getTimer(const std::string &path, std::list<Timer> &results) 
             continue;
         }
         std::string::size_type messageMarkPosition = line.find(getMessageMarkString());
-        Timer timer;
+        core::Timer timer;
         if (messageMarkPosition != std::string::npos) {
             std::string::size_type start = messageMarkPosition + getMessageMarkString().length();
             std::string::size_type end = line.length() - messageMarkPosition;
@@ -58,18 +55,18 @@ void TimerService::getTimer(const std::string &path, std::list<Timer> &results) 
     }
 }
 
-void TimerService::registerTimer(const std::string &path, const Timer &timer) {
+void TimerManager::registerTimer(const std::string &path, const core::Timer &timer) {
     if (path.empty()) {
         return;
     }
     std::ofstream stream(path, std::ios::binary|std::ios::app);
     std::string format("");
-    TimerService::getTimerFormat(timer, format);
+    TimerManager::getTimerFormat(timer, format);
     stream << format << std::endl;
     stream.close();
 }
 
-const std::string &TimerService::getTimerFormat(const Timer &timer, std::string &result) {
+const std::string &TimerManager::getTimerFormat(const core::Timer &timer, std::string &result) {
     result.clear();
 
     result += timer.isFinish() ? getFinishedMarkString() : "  ";

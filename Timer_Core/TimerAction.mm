@@ -12,7 +12,7 @@
 #include "Timer.h"
 
 // services
-#include "TimerService.h"
+#include "TimerManager.h"
 #include "ConfigService.h"
 
 // others
@@ -75,8 +75,8 @@
 - (void)perform {
     std::string path("");
     ConfigService::getSavedTimerPath(path);
-    std::list<Timer> timers;
-    TimerService::getTimer(path, timers);
+    std::list<core::Timer> timers;
+    TimerManager::getTimer(path, timers);
 
     printf("count: %d\n", (int)timers.size());
 }
@@ -127,14 +127,14 @@
     if (path.empty()) {
         return;
     }
-    Timer timer;
+    core::Timer timer;
     timer.setFireDatetime([self.time timeIntervalSince1970]);
     timer.setMessage(self.message ? [self.message UTF8String] : "");
     if (timer.isFinish()) {
         NSLog(@"time: \"%@\" is finished!\n", [self time]);
         return;
     }
-    TimerService::registerTimer(path, timer);
+    TimerManager::registerTimer(path, timer);
 
     NSString *datetimeText = [[self.class dateFormatter] stringFromDate:self.time];
     NSLog(@"setted timer.\n  %@", datetimeText);
