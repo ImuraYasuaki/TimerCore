@@ -15,18 +15,30 @@ namespace core {
 
     class Timer {
     private:
+        unsigned int timerId;
         time_t fireDatetime;
         std::string message;
 
     public:
         Timer() { this->fireDatetime = 0; }
-        Timer(const Timer &other) { this->fireDatetime = other.getFireDatetime(); this->message = other.getMessage(); }
+        Timer(const Timer &other) {
+            this->fireDatetime = other.getFireDatetime();
+            this->message = other.getMessage();
+            this->timerId = other.getTimerId();
+        }
+        static const unsigned int UnregisteredTimerID = -1;
 
         time_t getFireDatetime() const { return this->fireDatetime; }
         void setFireDatetime(const time_t &datetime);
 
         const std::string &getMessage() const { return this->message; }
         void setMessage(const std::string message) {this->message = message; }
+
+        unsigned int getTimerId() const { return this->timerId; }
+        void setTimerId(const unsigned int timerId) {this->timerId = timerId; }
+
+        bool operator==(const Timer &other) const { return (this->message == other.getMessage() && this->fireDatetime == other.getFireDatetime()); };
+        bool operator!=(const Timer &other) const { return !(*this == other); };
 
         bool isFinish() const;
     };

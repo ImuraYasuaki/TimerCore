@@ -13,7 +13,7 @@
 
 // services
 #include "TimerManager.h"
-#include "ConfigService.h"
+#include "ConfigManager.h"
 
 // others
 #include "TimerCommandArgumentParser.h"
@@ -74,7 +74,7 @@
 
 - (void)perform {
     std::string path("");
-    ConfigService::getSavedTimerPath(path);
+    ConfigManager::getSavedTimerPath(path);
     std::list<core::Timer> timers;
     TimerManager::getTimer(path, timers);
 
@@ -123,7 +123,7 @@
         return;
     }
     std::string path;
-    ConfigService::getSavedTimerPath(path);
+    ConfigManager::getSavedTimerPath(path);
     if (path.empty()) {
         return;
     }
