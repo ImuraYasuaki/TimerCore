@@ -15,6 +15,11 @@
 // models
 #include "Timer.h"
 
+/*!
+ @todo TimerManagerインターフェイスを抽出する
+ @todo TimerFileManagerを実装する
+ @todo TimerDatabaseManagerを実装する
+ */
 class TimerManager {
 private:
     TimerManager() {}
@@ -26,6 +31,7 @@ public:
     static void getTimer(const std::string &path, std::list<core::Timer> &results);
 
     static void registerTimer(const std::string &path, const core::Timer &timer);
+    static void updateTimer(const std::string &path, const core::Timer &timer);
     static void deleteTimer(const std::string &path, const core::Timer &timer);
 
     static const std::string &getTimerFormat(const core::Timer &timer, std::string &result);

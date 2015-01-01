@@ -32,12 +32,12 @@ namespace core {
         void setFireDatetime(const time_t &datetime);
 
         const std::string &getMessage() const { return this->message; }
-        void setMessage(const std::string message) {this->message = message; }
+        void setMessage(const std::string message) { this->message = message; }
 
         unsigned int getTimerId() const { return this->timerId; }
-        void setTimerId(const unsigned int timerId) {this->timerId = timerId; }
+        void setTimerId(const unsigned int timerId) { this->timerId = timerId; }
 
-        bool operator==(const Timer &other) const { return (this->message == other.getMessage() && this->fireDatetime == other.getFireDatetime()); };
+        bool operator==(const Timer &other) const { return (this->timerId == other.timerId) || (this->message == other.getMessage() && this->fireDatetime == other.getFireDatetime()); };
         bool operator!=(const Timer &other) const { return !(*this == other); };
 
         bool isFinish() const;

@@ -67,6 +67,7 @@ void TimerManager::deleteTimer(const std::string &path, const core::Timer &timer
         inputStream.close();
         return;
     }
+    /*! @todo ロジックの改善をする */
     unsigned int lineNumber = 0;
     std::string records("");
     std::string line("");
@@ -75,7 +76,43 @@ void TimerManager::deleteTimer(const std::string &path, const core::Timer &timer
             core::Timer record;
             getTimer(lineNumber, line, record);
 
-            if (record != timer) {
+            if (record == timer) {
+                records.append("\n");
+            } else {
+                records.append(line).append("\n");
+            }
+        }
+        lineNumber++;
+    }
+    std::ofstream outputSteram(path, std::ios::binary|std::ios::trunc);
+    outputSteram << records;
+    outputSteram.close();
+    inputStream.close();
+}
+
+void TimerManager::updateTimer(const std::string &path, const core::Timer &timer) {
+    if (path.empty()) {
+        return;
+    }
+    std::ifstream inputStream(path, std::ios::binary|std::ios::out);
+    if (inputStream.bad()) {
+        inputStream.close();
+        return;
+    }
+    /*! @todo ロジックの改善をする */
+    unsigned int lineNumber = 0;
+    std::string records("");
+    std::string line("");
+    while (std::getline(inputStream, line)) {
+        if (!line.empty()) {
+            core::Timer record;
+            getTimer(lineNumber, line, record);
+            
+            if (record == timer) {
+                std::string format("");
+                getTimerFormat(timer, format);
+                records.append(format).append("\n");
+            } else {
                 records.append(line).append("\n");
             }
         }
