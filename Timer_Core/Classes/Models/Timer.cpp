@@ -12,9 +12,6 @@
 #include "timeutil.h"
 
 void core::Timer::setFireDatetime(const time_t &datetime) {
-    if (timeutil::isPast(datetime)) {
-        return;
-    }
     this->fireDatetime = datetime;
 }
 

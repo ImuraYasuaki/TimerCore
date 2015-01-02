@@ -143,8 +143,9 @@ void TimerManager::getTimer(const unsigned int lineNumber, const std::string &fo
         std::string message = formattedText.substr(start, end);
         timer.setMessage(message);
     }
+    bool hasMessage = messageMarkPosition == std::string::npos;
+    std::string::size_type end = (hasMessage ? formattedText.length() : messageMarkPosition) - getFinishedMarkString().length();
     std::string::size_type start = getFinishedMarkString().length();
-    std::string::size_type end = (messageMarkPosition == std::string::npos ? formattedText.length() : messageMarkPosition) - getFinishedMarkString().length();
     std::string timeText = formattedText.substr(start, end);
 
     /*! @todo このやり方はさすがに・・・かな？ */
